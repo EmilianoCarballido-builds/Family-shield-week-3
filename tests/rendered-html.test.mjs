@@ -32,7 +32,9 @@ test("renders the Family Shield intake and safety boundaries", async () => {
   assert.match(html, /Use microphone/);
   assert.match(html, /Review pressure cues/);
   assert.match(html, /AI review available/);
+  assert.match(html, /Verify with Mariana/);
+  assert.match(html, /End-to-end fictional demo/);
   assert.match(html, /Do not enter real names, account numbers, or private information/);
-  assert.match(html, /Only the account owner makes this decision/);
+  assert.match(html, /Only Elena, the fictional account owner, makes the final decision/);
   assert.doesNotMatch(html, /definitely safe|definitely fraud/i);
 });

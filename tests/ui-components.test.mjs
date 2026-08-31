@@ -43,6 +43,9 @@ test("emits the product intake and reduced-motion styles", async () => {
   assert.match(css, /\.voice-button/);
   assert.match(css, /\.analysis-panel/);
   assert.match(css, /\.simulation-label/);
+  assert.match(css, /\.workflow-card/);
+  assert.match(css, /\.contact-options/);
+  assert.match(css, /\.owner-decision/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
 });
 
@@ -122,4 +125,22 @@ test("creates a bounded simulated analysis without a verdict", async () => {
   assert.match(output.summary, /not proof/i);
   assert.equal(analysisResponseSchema.safeParse(output).success, true);
   assert.doesNotMatch(JSON.stringify(output), /"score"|"probability"/i);
+});
+
+test("keeps contact requests minimal and routes unclear outcomes to Protocol Only", async () => {
+  const {
+    createContactRequest,
+    outcomeCopy,
+    requiresProtocolOnly,
+  } = await vite.ssrLoadModule("/lib/verification-policy.ts");
+
+  const request = createContactRequest();
+  assert.deepEqual(Object.keys(request).sort(), ["claim", "contactAlias"]);
+  assert.doesNotMatch(JSON.stringify(request), /amount|balance|account|audio|transcript|payment/i);
+
+  assert.equal(requiresProtocolOnly("confirmed"), false);
+  assert.equal(requiresProtocolOnly("cannot_confirm"), true);
+  assert.equal(requiresProtocolOnly("not_sure"), true);
+  assert.equal(requiresProtocolOnly("no_response"), true);
+  assert.match(outcomeCopy.confirmed.detail, /does not prove.*safe/i);
 });

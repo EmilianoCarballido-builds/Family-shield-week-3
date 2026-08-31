@@ -281,6 +281,66 @@ footer {
   gap: clamp(0.9rem, 2vw, 1.5rem);
 }
 
+.interactive-section {
+  width: min(100%, 960px);
+}
+
+.workflow-card {
+  width: min(100%, 760px);
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  padding: clamp(1.25rem, 3vw, 2.35rem);
+  border: 1px solid var(--border);
+  border-radius: 1.7rem;
+  background: var(--white);
+  box-shadow: 0 20px 55px rgba(15, 39, 57, 0.09);
+}
+
+.workflow-card-primary {
+  color: white;
+  border-color: transparent;
+  background:
+    radial-gradient(circle at 92% 6%, rgba(25, 192, 184, 0.28), transparent 28%),
+    linear-gradient(145deg, #0c3552 0%, #061c2e 72%);
+  box-shadow: 0 26px 70px rgba(6, 28, 46, 0.24);
+}
+
+.workflow-card h2 {
+  max-width: 620px;
+  margin: 0;
+  color: var(--navy-deep);
+  font-size: clamp(1.85rem, 4vw, 3rem);
+  font-weight: 760;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+}
+
+.workflow-card-primary h2 {
+  color: white;
+}
+
+.workflow-card-primary .screen-topline {
+  color: #c4d8e1;
+}
+
+.workflow-card-primary .step:not(:last-child)::after {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.workflow-card-primary .step > span {
+  background: var(--navy-deep);
+}
+
+.workflow-card-primary .eyebrow {
+  color: #6ee2dc;
+}
+
+.workflow-card-primary .screen-lede {
+  color: #c4d8e1;
+}
+
 .phone-card {
   min-width: 0;
   min-height: 650px;
@@ -1056,6 +1116,11 @@ footer {
   background: var(--teal);
 }
 
+.primary-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.48 !important;
+}
+
 .secondary-action {
   color: var(--navy);
   border-color: var(--border);
@@ -1066,6 +1131,169 @@ footer {
   color: white;
   border-color: rgba(255, 255, 255, 0.42);
   background: transparent;
+}
+
+.workflow-card-primary .secondary-action {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.42);
+  background: transparent;
+}
+
+.horizontal-actions {
+  grid-template-columns: 1fr 1fr;
+}
+
+.claim-preview {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: #f8faf9;
+}
+
+.claim-preview > span {
+  color: var(--teal-dark);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.claim-preview blockquote,
+.contact-claim {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.role-switch-notice {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin: 1.1rem 0 1.5rem;
+  padding: 0.85rem;
+  border: 1px solid #bde3e0;
+  border-radius: 0.85rem;
+  color: #31585c;
+  background: var(--teal-pale);
+}
+
+.role-switch-notice svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+}
+
+.role-switch-notice p {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.contact-claim {
+  padding: 1.1rem;
+  border-left: 4px solid var(--teal);
+  border-radius: 0.65rem;
+  background: #f3f8f7;
+}
+
+.contact-options {
+  margin-top: 0.4rem;
+}
+
+.contact-options label {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.contact-options label:has([data-state="checked"]) {
+  border-color: var(--teal);
+  background: var(--teal-pale);
+}
+
+.contact-options label > button {
+  margin-top: 0.15rem;
+}
+
+.contact-options label > span {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.contact-options strong {
+  color: var(--navy);
+  font-size: 0.82rem;
+}
+
+.contact-options small {
+  color: var(--slate);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.owner-decision {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #bde3e0;
+  border-radius: 1rem;
+  background: var(--teal-pale);
+}
+
+.owner-decision h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+
+.owner-decision > p {
+  margin: 0;
+  color: #41656a;
+  font-size: 0.72rem;
+}
+
+.final-card {
+  justify-content: center;
+}
+
+.final-boundary {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  color: #41656a;
+  background: #f8faf9;
+}
+
+.final-boundary svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  color: var(--teal-dark);
+}
+
+.final-boundary p {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.restart-button {
+  margin-top: 1rem;
 }
 
 .cancel-action {
@@ -1156,6 +1384,15 @@ footer p {
   .phone-card {
     min-height: 620px;
     border-radius: 1.25rem;
+  }
+
+  .workflow-card {
+    min-height: 620px;
+    border-radius: 1.25rem;
+  }
+
+  .horizontal-actions {
+    grid-template-columns: 1fr;
   }
 
   footer {

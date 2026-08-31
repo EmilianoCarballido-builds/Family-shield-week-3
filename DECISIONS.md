@@ -103,3 +103,45 @@ Implement Feature 3: a strictly validated pressure-cue analysis route with struc
 ### Tomorrow's first move
 
 Implement Feature 4: the role-separated trusted-contact flow, Protocol Only outcomes, and final owner decision.
+
+## Session 4 - Feature 4 independent verification flow
+
+### Decisions made
+
+- The prototype now displays one role-specific screen at a time so Mariana cannot see Elena's transfer details beside the contact interface.
+- Elena reviews the pressure cues before the independent-check action becomes available.
+- The simulated contact request contains only Mariana's alias and the claim that Luis had an accident today.
+- Mariana can report “confirmed,” “cannot confirm,” or “not sure,” but cannot approve, cancel, delay, or change the transfer.
+- A no-response path is available without pretending a real message was sent.
+- “Cannot confirm,” “not sure,” and “no response” all activate Protocol Only.
+- A confirmed claim is described as reduced uncertainty, never approval or proof of safety.
+- Only Elena's outcome screen contains the final cancel-or-continue actions.
+- All flow state remains in React memory and disappears on refresh or restart.
+
+### Blueprint impact
+
+- **Independent channel:** the demo explicitly switches from Elena's view to a separate Mariana view.
+- **User control:** Mariana reports knowledge only; Elena alone makes the payment decision.
+- **Proportional pause:** the pause ends with Elena's decision and applies only to the fictional MXN 8,500 transfer.
+- **Works under pressure:** one primary action advances each stage, while no response has a visible recovery route.
+- **No certainty claims:** all outcomes remain neutral, and confirmation is not presented as safety.
+- **Shadow clause:** the contact payload has only `contactAlias` and `claim`; prohibited financial, audio, and transcript fields are absent.
+
+### Verification completed
+
+- Policy tests cover all four contact outcomes and enforce Protocol Only for every unclear result.
+- A privacy-boundary test confirms that the contact request has only two allowed fields.
+- Initial-render tests confirm the interactive flow, analysis action, and family-verification action are present.
+- Responsive CSS keeps final actions stacked on narrow screens and exposes keyboard-visible radio controls.
+- A real browser pass completed the cannot-confirm route from fictional intake through simulated analysis, isolated contact view, Protocol Only, and Elena's cancellation decision.
+- The contact screen contained no transfer amount, the page had no framework error overlay, and the browser reported no site-origin console errors.
+
+### Unresolved risks
+
+- No real message is sent; every contact step is visibly simulated.
+- Mobile-width browser verification and the remaining outcome branches stay in the final test milestone.
+- The live Site remains owner-only until submission access is explicitly widened.
+
+### Tomorrow's first move
+
+Implement Feature 5: finish full-journey tests, accessibility checks, README instructions, and final security documentation.

@@ -64,7 +64,11 @@ const cueLabels: Record<PressureCue["type"], string> = {
   new_recipient: "New recipient",
 };
 
-export function TransferIntake() {
+interface TransferIntakeProps {
+  onAnalysisChange?: (analysis: AnalysisResponse | null) => void;
+}
+
+export function TransferIntake({ onAnalysisChange }: TransferIntakeProps) {
   const [narrative, setNarrative] = useState("");
   const [error, setError] = useState("");
   const [status, setStatus] = useState("Type the request or use the microphone.");
@@ -96,6 +100,7 @@ export function TransferIntake() {
     setNarrative(value);
     setError("");
     setAnalysis(null);
+    onAnalysisChange?.(null);
   }
 
   function loadExample() {
@@ -142,6 +147,7 @@ export function TransferIntake() {
         );
         setError("");
         setAnalysis(null);
+        onAnalysisChange?.(null);
         setStatus("Voice captured. Review and edit the transcript before continuing.");
       }
     };
@@ -182,6 +188,7 @@ export function TransferIntake() {
     if (!result.valid) {
       setError(result.error);
       setAnalysis(null);
+      onAnalysisChange?.(null);
       setStatus("The description needs attention before it can continue.");
       textareaRef.current?.focus();
       return;
@@ -190,6 +197,7 @@ export function TransferIntake() {
     setNarrative(result.value);
     setError("");
     setAnalysis(null);
+    onAnalysisChange?.(null);
     setIsAnalyzing(true);
     setStatus("Reviewing pressure cues. This does not determine whether the request is genuine.");
 
@@ -210,6 +218,7 @@ export function TransferIntake() {
       }
 
       setAnalysis(body);
+      onAnalysisChange?.(body);
       setStatus(
         body.nextStep === "offer_independent_check"
           ? "Review complete. A short independent check is recommended before deciding."
@@ -229,6 +238,7 @@ export function TransferIntake() {
     setNarrative("");
     setError("");
     setAnalysis(null);
+    onAnalysisChange?.(null);
     setIsAnalyzing(false);
     setIsListening(false);
     setStatus("Description cleared. Type the request or use the microphone.");
