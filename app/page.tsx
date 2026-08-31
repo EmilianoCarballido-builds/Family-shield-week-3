@@ -3,7 +3,6 @@ import {
   BadgeCheck,
   CircleAlert,
   LockKeyhole,
-  Mic,
   PhoneCall,
   ShieldCheck,
   UserRoundCheck,
@@ -11,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { TransferIntake } from "@/components/transfer-intake";
 
 const steps = ["Review", "Verify", "Decide"];
 
@@ -40,7 +40,7 @@ function ReviewScreen() {
     <article className="phone-card phone-card-primary" aria-labelledby="review-title">
       <div className="screen-topline">
         <span>Step 1 of 3</span>
-        <span className="mode-label">Simulated AI</span>
+        <span className="mode-label">AI not connected</span>
       </div>
       <StepRail active={1} />
 
@@ -72,14 +72,7 @@ function ReviewScreen() {
         </div>
       </div>
 
-      <div className="voice-preview" aria-label="Voice input coming in a later build">
-        <span className="voice-icon"><Mic aria-hidden="true" /></span>
-        <div>
-          <strong>Voice description</strong>
-          <small>Available in the next build</small>
-        </div>
-        <span className="static-pill">Preview</span>
-      </div>
+      <TransferIntake />
 
       <div className="screen-actions">
         <Button className="primary-action" size="lg" disabled>
@@ -203,7 +196,7 @@ export default function Home() {
         </a>
         <div className="header-status">
           <span className="status-dot" aria-hidden="true" />
-          Static prototype
+          Voice intake enabled
         </div>
       </header>
 

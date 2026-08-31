@@ -30,3 +30,39 @@
 
 Implement Feature 2: validated typed intake and browser voice-to-text with a complete typed fallback.
 
+## Session 2 - Feature 2 voice and typed intake
+
+### Decisions made
+
+- The user can type a request or dictate it through the browser's native speech-recognition interface.
+- Voice recognition uses Spanish (Mexico) because the exact user is a Mexican older adult receiving a family-emergency request.
+- The transcript remains editable and is never submitted automatically after dictation.
+- The interface includes a fictional example so the live demo never requires real personal information.
+- Client validation requires 20-1200 normalized characters and returns plain-language recovery messages.
+- Unsupported browsers and denied microphone permission always return focus to the typed fallback.
+- Audio is processed only by the browser speech interface; the prototype does not upload, save, or log audio.
+- Saving a valid description stops at a clearly labeled readiness state. AI analysis remains outside Feature 2.
+
+### Blueprint impact
+
+- **Works under pressure:** voice and typing offer two ways to complete the same action without a dead end.
+- **User control:** the user reviews and edits the transcript before anything can continue.
+- **No certainty claims:** intake collects context only and does not display a verdict or score.
+- **Shadow clause:** the form warns against real names, account numbers, and private information; nothing persists after refresh.
+
+### Verification completed
+
+- Typed-input validation covers wrong type, too short, valid, and too long values.
+- Voice support detection, permission-error recovery, stop behavior, and component cleanup are implemented.
+- Keyboard focus and live status announcements are included.
+- Starter-only CSS assertions were replaced with product-specific intake, validation, voice-control, and reduced-motion checks.
+
+### Unresolved risks
+
+- Browser voice support varies; the typed fallback remains the guaranteed path.
+- The transcript has not yet been sent to an LLM or server route.
+- Contact verification remains static.
+
+### Tomorrow's first move
+
+Implement Feature 3: a strictly validated pressure-cue analysis route with structured, visibly labeled simulated output.

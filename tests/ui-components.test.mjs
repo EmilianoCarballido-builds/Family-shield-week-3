@@ -35,16 +35,12 @@ async function readCssTree(directory) {
   return contents.join("\n");
 }
 
-test("emits the catalog's animation and scrolling utilities", async () => {
+test("emits the product intake and reduced-motion styles", async () => {
   const css = await readCssTree(path.join(root, "dist"));
 
-  assert.match(css, /--tw-enter-opacity/);
-  assert.match(css, /scrollbar-width:\s*thin/);
-  assert.match(css, /scrollbar-width:\s*none/);
-  assert.match(css, /scrollbar-gutter:\s*stable/);
-  assert.match(css, /scroll-fade-reveal-b/);
-  assert.match(css, /mask-image:/);
-  assert.match(css, /tw-shimmer/);
+  assert.match(css, /\.intake-form/);
+  assert.match(css, /textarea\[aria-invalid=/);
+  assert.match(css, /\.voice-button/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
 });
 
@@ -82,4 +78,25 @@ test("renders sidebar skeletons deterministically", async () => {
 
   assert.equal(first, second);
   assert.match(first, /--skeleton-width:70%/);
+});
+
+test("validates and normalizes urgent-request narratives", async () => {
+  const {
+    MAX_NARRATIVE_LENGTH,
+    validateNarrative,
+  } = await vite.ssrLoadModule("/lib/intake-validation.ts");
+
+  assert.deepEqual(validateNarrative(null), {
+    valid: false,
+    error: "Enter the request as text before continuing.",
+  });
+  assert.equal(validateNarrative("too short").valid, false);
+  assert.deepEqual(
+    validateNarrative("  Please   send money today and do not call anyone.  "),
+    {
+      valid: true,
+      value: "Please send money today and do not call anyone.",
+    },
+  );
+  assert.equal(validateNarrative("x".repeat(MAX_NARRATIVE_LENGTH + 1)).valid, false);
 });
