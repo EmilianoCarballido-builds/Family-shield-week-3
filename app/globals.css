@@ -761,6 +761,138 @@ footer {
   background: var(--teal-dark);
 }
 
+.save-description:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.spin {
+  animation: spin 900ms linear infinite;
+}
+
+.analysis-panel {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.25rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(110, 226, 220, 0.42);
+  border-radius: 0.9rem;
+  color: #eaf7f7;
+  background: rgba(2, 20, 32, 0.62);
+}
+
+.analysis-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  color: #9fb8c4;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.simulation-label,
+.live-ai-label {
+  padding: 0.38rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 850;
+}
+
+.simulation-label {
+  color: #ffe7a5;
+  border: 1px solid rgba(247, 198, 106, 0.5);
+  background: rgba(229, 165, 22, 0.16);
+}
+
+.live-ai-label {
+  color: #bff7f3;
+  border: 1px solid rgba(110, 226, 220, 0.44);
+  background: rgba(7, 157, 152, 0.18);
+}
+
+.analysis-panel h3 {
+  margin: 0;
+  color: white;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+
+.cue-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cue-list li {
+  display: grid;
+  gap: 0.24rem;
+  padding: 0.68rem;
+  border-left: 3px solid var(--amber);
+  border-radius: 0.55rem;
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.cue-list strong {
+  color: #ffe7a5;
+  font-size: 0.7rem;
+}
+
+.cue-list q {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.cue-list p,
+.analysis-summary p,
+.pause-note,
+.no-cues {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.cue-list p {
+  color: #b9cdd5;
+}
+
+.analysis-summary {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(196, 216, 225, 0.18);
+  color: #d9e8ec;
+}
+
+.analysis-summary svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+  color: #f7c66a;
+}
+
+.pause-note {
+  padding: 0.65rem;
+  border-radius: 0.55rem;
+  color: #c8dce3;
+  background: rgba(7, 157, 152, 0.13);
+}
+
+.pause-note strong {
+  color: #8feae5;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .voice-status {
   min-height: 1.1rem;
   margin: 0;

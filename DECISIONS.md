@@ -66,3 +66,40 @@ Implement Feature 2: validated typed intake and browser voice-to-text with a com
 ### Tomorrow's first move
 
 Implement Feature 3: a strictly validated pressure-cue analysis route with structured, visibly labeled simulated output.
+
+## Session 3 - Feature 3 pressure-cue analysis
+
+### Decisions made
+
+- Analysis is handled only by `POST /api/analyze`; the browser never receives a model credential.
+- The request accepts exactly three fields and rejects missing, extra, wrong-type, malformed, and oversized input.
+- The current deployment uses the deterministic fallback and permanently labels it **PROTOTYPE — SIMULATED AI**.
+- A server-side AI Gateway path is available when `AI_GATEWAY_API_KEY` is configured; model or schema failure returns the safe simulated result.
+- User text is delimited as untrusted data, while the server controls the instruction and response schema.
+- The response contains cue categories, short evidence, explanations, and a next step—never a score, probability, authenticity verdict, or safety decision.
+- The summary is controlled by the server and always says that cues are not proof.
+
+### Blueprint impact
+
+- **Proportional pause:** the result explains that only the current fictional transfer is paused temporarily.
+- **Works under pressure:** the cue review is one action and returns a plain-language next step.
+- **No certainty claims:** every response uses a server-controlled not-proof statement and contains no risk score.
+- **User control:** analysis recommends an independent check but cannot cancel, approve, or move money.
+- **Shadow clause:** no content is stored or logged, and only the minimal transcript plus fictional transaction flags enter the route.
+
+### Verification completed
+
+- API tests cover valid simulated output, malformed JSON, wrong types, extra fields, oversized bodies, and prompt-injection-style text.
+- Output tests enforce the documented keys, four-cue maximum, not-proof statement, and absence of score/probability fields.
+- The UI includes loading, success, unavailable, and typed-fallback states with an accessible live-status message.
+- The first mechanical pass found a response-schema bug: simulated analysis could correctly return four allowed cues while the validator allowed only three. The response limit was corrected to four and the affected test was rerun.
+
+### Unresolved risks
+
+- Live model mode is implemented but remains unverified until the project receives a server-side AI Gateway key.
+- Independent contact actions and outcome state remain static until Feature 4.
+- The simulated cue rules are intentionally narrow and must not be presented as fraud detection.
+
+### Tomorrow's first move
+
+Implement Feature 4: the role-separated trusted-contact flow, Protocol Only outcomes, and final owner decision.

@@ -41,6 +41,8 @@ test("emits the product intake and reduced-motion styles", async () => {
   assert.match(css, /\.intake-form/);
   assert.match(css, /textarea\[aria-invalid=/);
   assert.match(css, /\.voice-button/);
+  assert.match(css, /\.analysis-panel/);
+  assert.match(css, /\.simulation-label/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
 });
 
@@ -99,4 +101,25 @@ test("validates and normalizes urgent-request narratives", async () => {
     },
   );
   assert.equal(validateNarrative("x".repeat(MAX_NARRATIVE_LENGTH + 1)).valid, false);
+});
+
+test("creates a bounded simulated analysis without a verdict", async () => {
+  const {
+    analysisRequestSchema,
+    analysisResponseSchema,
+    createSimulatedAnalysis,
+  } = await vite.ssrLoadModule("/lib/pressure-analysis.ts");
+
+  const input = analysisRequestSchema.parse({
+    narrative: "  Es urgente. No le digas a nadie y deposita hoy a una cuenta nueva.  ",
+    newRecipient: true,
+    urgencySelected: true,
+  });
+  const output = createSimulatedAnalysis(input);
+
+  assert.equal(output.mode, "simulated");
+  assert.ok(output.cues.length > 0 && output.cues.length <= 4);
+  assert.match(output.summary, /not proof/i);
+  assert.equal(analysisResponseSchema.safeParse(output).success, true);
+  assert.doesNotMatch(JSON.stringify(output), /"score"|"probability"/i);
 });

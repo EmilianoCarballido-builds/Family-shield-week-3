@@ -30,6 +30,8 @@ test("renders the Family Shield intake and safety boundaries", async () => {
   assert.match(html, /Family Shield/);
   assert.match(html, /What did the requester say\?/);
   assert.match(html, /Use microphone/);
+  assert.match(html, /Review pressure cues/);
+  assert.match(html, /AI review available/);
   assert.match(html, /Do not enter real names, account numbers, or private information/);
   assert.match(html, /Only the account owner makes this decision/);
   assert.doesNotMatch(html, /definitely safe|definitely fraud/i);

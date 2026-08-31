@@ -40,7 +40,7 @@ function ReviewScreen() {
     <article className="phone-card phone-card-primary" aria-labelledby="review-title">
       <div className="screen-topline">
         <span>Step 1 of 3</span>
-        <span className="mode-label">AI not connected</span>
+        <span className="mode-label">AI review available</span>
       </div>
       <StepRail active={1} />
 
@@ -196,7 +196,7 @@ export default function Home() {
         </a>
         <div className="header-status">
           <span className="status-dot" aria-hidden="true" />
-          Voice intake enabled
+          Voice + pressure-cue review
         </div>
       </header>
 
