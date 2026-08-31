@@ -145,3 +145,50 @@ Implement Feature 4: the role-separated trusted-contact flow, Protocol Only outc
 ### Tomorrow's first move
 
 Implement Feature 5: finish full-journey tests, accessibility checks, README instructions, and final security documentation.
+
+## Session 5 - Final mechanical coverage and documentation
+
+### Decisions made
+
+- Feature 5 adds no new product power; it strengthens verification, documentation, accessibility, and reproducibility around the completed slice.
+- The analysis route now rejects non-JSON content types with a safe 415 response.
+- Reduced-motion mode suppresses animation and transition duration across the interface.
+- Repository security tests inspect environment handling, browser/server separation, persistence APIs, user-content logging, and credential-shaped values.
+- The README now contains setup, optional model configuration, exact demo steps, test commands, deployment status, business-model interview evidence, and explicit exclusions.
+- `docs/SECURITY.md` maps every security-floor item to implementation evidence and residual risk.
+- `docs/TEST_MATRIX.md` maps the required mechanical cases to automated, browser, or inspection evidence.
+
+### Final Blueprint mapping
+
+- **Independent channel:** Elena explicitly switches to a separate fictional Mariana view; the original requester cannot supply the verification response.
+- **User controls payment:** Mariana and the system report information only; Elena alone sees and selects the final cancel-or-continue actions.
+- **Proportional pause:** the explanation applies only to the fictional MXN 8,500 transfer, is temporary, and ends with Elena's choice.
+- **Works under pressure:** one primary action advances each screen, typed input always recovers from voice failure, and unclear verification enters Protocol Only.
+- **No certainty claims:** analysis has no score or probability, all summaries say cues are not proof, and confirmation is never approval or a safety guarantee.
+- **Shadow clause:** the contact request contains only an alias and emergency claim; no balance, amount, account, recipient details, history, audio, transcript, credentials, unrelated family data, or payment control crosses the boundary.
+
+### Security-floor result
+
+- **Secrets:** pass — ignored environment files, blank tracked example, server-only key access, and automated static checks.
+- **Auth:** not applicable — no personal data is stored; auth becomes mandatory before any future persistence.
+- **RLS:** not applicable — no Supabase/user-data table exists; RLS becomes mandatory with future personal storage.
+- **Form validation:** pass — client length checks plus strict JSON/type/key/byte validation on the server.
+- **Fictional data:** pass — every demo identity, claim, contact, transaction, and response is invented and labeled.
+
+### Verification completed
+
+- Production page and API route are exercised through the built worker.
+- Mechanical coverage includes valid/invalid analysis, prompt injection, privacy, role control, all contact outcomes, responsive/reduced-motion CSS, secrets, logging, and persistence boundaries.
+- Lint, production build, automated tests, browser journey, and deployment status are recorded only after observed completion.
+- Final observed result before checkpoint: production build passed, lint passed, and all 15 automated tests passed.
+
+### Unresolved risks
+
+- The persona test and highest-severity persona fix remain Feature 6.
+- Live-model mode remains optional and unverified without a server-side key; the deployed prototype is visibly simulated.
+- The Site remains owner-only until Emiliano explicitly approves public submission access.
+- Real payer-model interviews and the three-minute demo video require Emiliano's participation.
+
+### Tomorrow's first move
+
+Run Feature 6: capture ordered screens, perform the fresh-chat Doña Elena persona test, fix the worst confusion, retest, and redeploy.

@@ -52,6 +52,37 @@ test("rejects malformed, wrong-type, and extra-field requests", async () => {
     urgencySelected: true,
     accountNumber: "invented-but-rejected",
   }))).status, 400);
+
+  assert.equal((await post(JSON.stringify({
+    narrative: "too short",
+    newRecipient: true,
+    urgencySelected: true,
+  }))).status, 400);
+
+  assert.equal((await post(JSON.stringify({
+    narrative: "Please send the money today and do not call anybody before paying.",
+    newRecipient: true,
+  }))).status, 400);
+});
+
+test("rejects non-JSON content types and unsupported methods", async () => {
+  const wrongContentType = await post(
+    JSON.stringify({
+      narrative: "Please send the money today and do not call anybody before paying.",
+      newRecipient: true,
+      urgencySelected: true,
+    }),
+    { "content-type": "text/plain" },
+  );
+  assert.equal(wrongContentType.status, 415);
+
+  const getResponse = await worker.fetch(
+    new Request("http://localhost/api/analyze", { method: "GET" }),
+    environment,
+    context,
+  );
+  assert.equal(getResponse.status, 405);
+  assert.equal(getResponse.headers.get("x-content-type-options"), "nosniff");
 });
 
 test("rejects oversized bodies without echoing their contents", async () => {

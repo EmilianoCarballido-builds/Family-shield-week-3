@@ -30,3 +30,13 @@
 8. Selected **Cancel transfer** and observed the fictional completion screen.
 
 **Result:** Passed. No framework error overlay, blank page, or site-origin console error appeared. The browser environment emitted extension-only metadata errors unrelated to the application.
+
+## Pass 3 - Final security and accessibility gate
+
+**Checks added:** JSON content-type enforcement, unsupported-method handling, missing and short fields, `nosniff`/`no-store` headers, blank environment example, server-only key reference, secret-pattern scan, no user-content logging, no browser persistence API, and reduced-motion output.
+
+**Test issue found:** The first reduced-motion assertion expected the literal source form `0.01ms`, while the production CSS optimizer correctly emitted the equivalent `.01ms`.
+
+**Fix:** Updated only the test expression to accept either equivalent serialized form; the accessibility CSS itself did not require a change.
+
+**Result:** Production build passed, lint passed, and all 15 automated tests passed.

@@ -49,6 +49,11 @@ Transaction context: newRecipient=${input.newRecipient}; urgencySelected=${input
 }
 
 export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  if (!contentType.toLowerCase().startsWith("application/json")) {
+    return json({ error: "Send the request as application/json." }, 415);
+  }
+
   const contentLength = Number(request.headers.get("content-length") ?? "0");
   if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
     return json({ error: "Request is too large." }, 413);

@@ -47,6 +47,7 @@ test("emits the product intake and reduced-motion styles", async () => {
   assert.match(css, /\.contact-options/);
   assert.match(css, /\.owner-decision/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(css, /animation-duration:\s*0?\.01ms/);
 });
 
 test("forwards progress semantics to the primitive", async () => {
